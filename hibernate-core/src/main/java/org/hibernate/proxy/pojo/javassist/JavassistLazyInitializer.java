@@ -27,10 +27,7 @@ import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import javassist.util.proxy.MethodFilter;
-import javassist.util.proxy.MethodHandler;
-import javassist.util.proxy.Proxy;
-import javassist.util.proxy.ProxyFactory;
+import javassist.util.proxy.*;
 
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SessionImplementor;
@@ -102,7 +99,7 @@ public class JavassistLazyInitializer extends BasicLazyInitializer implements Me
 			factory.setFilter( FINALIZE_FILTER );
 			Class cl = factory.createClass();
 			final HibernateProxy proxy = ( HibernateProxy ) cl.newInstance();
-			( ( Proxy ) proxy ).setHandler( instance );
+			( (ProxyObject) proxy ).setHandler( instance );
 			instance.constructed = true;
 			return proxy;
 		}
@@ -145,7 +142,7 @@ public class JavassistLazyInitializer extends BasicLazyInitializer implements Me
 					+ persistentClass.getName(), e
 			);
 		}
-		( ( Proxy ) proxy ).setHandler( instance );
+		( ( ProxyObject ) proxy ).setHandler( instance );
 		instance.constructed = true;
 		return proxy;
 	}

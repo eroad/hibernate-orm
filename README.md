@@ -1,3 +1,14 @@
+IMPORTANT!
+==========
+
+We have forked this hibernate version caused for a incompatibility with our Glassfish version (3.1.2.2 - build 5). If you need to do any changes, go to the tag *4.2.21.Final-eroad* and create a branch.
+
+Why?
+----
+You must be wondering "why would somebody patch a hibernate version?!". I know, sounds crazy, but the cheapest option at this time. The issue is this: https://hibernate.atlassian.net/browse/HHH-8778.
+As we don't want to upgrade Glassfish at this point in time, we thought about 'fixing' hibernate to use the interface ProxyObject (which is compatible to our Glassfish version) instead of Proxy.
+It caused no side effects and it was also a minor change.  
+
 How to build
 ============
 
